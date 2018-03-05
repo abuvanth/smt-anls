@@ -3,6 +3,8 @@ import os
 import numpy as np
 import random
 from io import open
+import matplotlib.pyplot as plt
+import seaborn as sns
 from textblob import TextBlob
 # encoding=utf8
 import sys
@@ -87,4 +89,8 @@ def amazon_reviews():
     processed=processed_data.drop(['Reviews'],axis=1)
     processed.to_csv('preprocessed_reviews.csv')
     #print  X_train, Y_train, X_test, Y_test
+    data['text length'] = data['Reviews'].apply(str).apply(len)
+    g = sns.FacetGrid(data=data, col='Rating')
+    g.map(plt.hist, 'text length', bins=50)
+    plt.show()
     return X_train, Y_train, X_test, Y_test
