@@ -66,7 +66,10 @@ def amazon_reviews():
     for line in data['Reviews'][10000:20000]:
         Y_test.append('Review')
         X_test.append(split_text(line))
-    datafolder = './datasets/amazon/'
+    for line in data['Reviews'][10000:20000]:
+        Y_train.append('Review')
+        X_train.append(split_text(line))
+    '''datafolder = './datasets/amazon/'
     files = os.listdir(datafolder)
     Y_train, Y_test, X_train, X_test,  = [], [], [], []
     for file in files:
@@ -78,7 +81,7 @@ def amazon_reviews():
         for line in lines[:no_training_examples]:
             Y_train.append(label)
             X_train.append(split_text(line))
-        f.close()
+        f.close()'''
     data['processed_Reviews']=data['Reviews'][:10000].apply(pos_tag)
     processed_data=data.dropna()#remove null values
     processed=processed_data.drop(['Reviews'],axis=1)

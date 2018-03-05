@@ -31,7 +31,9 @@ def recall(determined_Y, real_Y, label):
 
 def f1_score(determined_Y, real_Y, label = 1):
     p = precision(determined_Y, real_Y, label)
+    print p
     r = recall(determined_Y, real_Y, label)
-    if p + r == 0: return 0
-    f1 = 2 * (p * r) / (p + r)
+    print r
+    if p[1] + r == 0: return 0
+    f1 = 2 * (p[1] * r) / (p[1] + r)
     return f1
