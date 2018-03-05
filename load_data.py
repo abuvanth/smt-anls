@@ -63,13 +63,10 @@ def pos_tag(txt):
 def amazon_reviews():
     Y_train, Y_test, X_train, X_test,  = [], [], [], []
     data=pd.read_csv('Amazon_Unlocked_Mobile.csv',encoding='utf-8')
-    for line in data['Reviews'][:10000]:
-        Y_train.append('Review')
-        X_train.append(split_text(line))
     for line in data['Reviews'][10000:20000]:
         Y_test.append('Review')
         X_test.append(split_text(line))
-    '''datafolder = '../datasets/amazon/'
+    datafolder = './datasets/amazon/'
     files = os.listdir(datafolder)
     Y_train, Y_test, X_train, X_test,  = [], [], [], []
     for file in files:
@@ -81,10 +78,7 @@ def amazon_reviews():
         for line in lines[:no_training_examples]:
             Y_train.append(label)
             X_train.append(split_text(line))
-        for line in lines[no_training_examples:]:
-            Y_test.append(label)
-            X_test.append(split_text(line))
-        f.close()'''
+        f.close()
     data['processed_Reviews']=data['Reviews'][:10000].apply(pos_tag)
     processed_data=data.dropna()#remove null values
     processed=processed_data.drop(['Reviews'],axis=1)

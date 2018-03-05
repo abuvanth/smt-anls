@@ -5,6 +5,7 @@ def true_positives(determined_Y, real_Y, label):
   for ii in range(0,len(determined_Y)):
     if determined_Y[ii] == label and real_Y[ii] == label: 
       true_positives+=1
+  print "true_positives : ",true_positives
   return true_positives
 
 def all_positives(determined_Y, label):
@@ -15,11 +16,13 @@ def false_negatives(determined_Y, real_Y, label):
   for ii in range(0,len(determined_Y)):
     if determined_Y[ii] != label and real_Y[ii] == label: 
       false_negatives+=1
+  print "false_negatives : ",false_negatives
   return false_negatives
   
 def precision(determined_Y, real_Y, label):
     if float(all_positives(determined_Y, label)) == 0: return 0
-    return true_positives(determined_Y, real_Y, label) / float(all_positives(determined_Y, label))
+    prec=true_positives(determined_Y, real_Y, label) / float(all_positives(determined_Y, label))
+    return "precision : ",prec
 
 def recall(determined_Y, real_Y, label):
     denominator = float((true_positives(determined_Y, real_Y, label) + false_negatives(determined_Y, real_Y, label)))

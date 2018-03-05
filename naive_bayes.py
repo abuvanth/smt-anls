@@ -128,7 +128,7 @@ print("training naive bayes")
 nbc = NaiveBayesText()
 nbc.train(X_train, Y_train)
 print("trained")
-predicted_Y = nbc.classify(X_test[:100])
+predicted_Y = nbc.classify(X_test[:500])
 y_labels = np.unique(Y_test)
 for y_label in y_labels:
     f1 = f1_score(predicted_Y, Y_test, y_label)
